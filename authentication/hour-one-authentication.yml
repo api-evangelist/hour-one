@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hour-one-openapi.json
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: APIKeyHeader
+  type: apiKey
+  in: header
+  parameter: api-key
+  sources:
+  - openapi/hour-one-openapi.json
+- name: HTTPBearer
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/hour-one-openapi.json
