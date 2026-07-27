@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hour-one-openapi.json
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: published OpenAPI 3.1.0 document (sizzle-server / MakeReals API v1)
+- id: api-key-auth
+  conforms: true
+  evidence: securityScheme APIKeyHeader (apiKey in header, name api-key)
+- id: http-bearer-auth
+  conforms: true
+  evidence: securityScheme HTTPBearer (http bearer) on account-management operations
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme in the OpenAPI
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: error bodies use FastAPI validation envelope (detail[]), not application/problem+json
+- id: webhooks-hmac-signing
+  conforms: true
+  evidence: outbound webhooks signed x-hourone-signature HMAC-SHA256 over raw body
+- id: pagination
+  conforms: false
+  evidence: GET /videos returns an unpaged list with no page/cursor parameters
+- id: idempotency
+  conforms: false
+  evidence: no Idempotency-Key header/parameter documented or in the OpenAPI

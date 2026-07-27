@@ -1,7 +1,28 @@
 aid: hour-one
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hour-one.png
 name: Hour One
-description: Hour One is a company surfaced as a portfolio company of insight-partners and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Hour One is a generative-AI video company (an Insight Partners portfolio company,
+  acquired by Wix in 2025) whose Studio / MakeReals API turns text and templates into
+  AI presenter ("virtual human") videos programmatically. The REST API lets developers
+  create videos two ways — Blueprint (render from an existing Hour One project template)
+  and Dynamic (define scenes, transcripts, characters and voices directly) — then poll or
+  receive HMAC-signed webhooks (video.ready / video.failed) on completion, generate voice
+  previews, add translated subtitles in 18 languages, pull per-scene metadata, and query a
+  video-creation analytics summary. Authentication is an api-key header for the video
+  surface and an HTTP Bearer token for account/key/webhook management.
 url: https://raw.githubusercontent.com/api-evangelist/hour-one/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,10 +32,101 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Video
+- Generative AI
+- AI Video
+- Media
+- Text to Video
+- Avatars
+- Content Creation
+apis:
+- aid: hour-one:hour-one-general-api
+  name: Hour One general API
+  description: The general API from Hour One — 3 operation(s) for general.
+  humanURL: https://hourone.gitbook.io/api-docs
+  baseURL: https://api.makereals.com/api/v1
+  tags:
+  - general
+  properties:
+  - type: OpenAPI
+    url: openapi/hour-one-general-api-openapi.yml
+  - type: APIReference
+    url: https://hourone.gitbook.io/api-docs/reference/api-reference
+  - type: Documentation
+    url: https://hourone.gitbook.io/api-docs
+- aid: hour-one:hour-one-keys-api
+  name: Hour One keys API
+  description: The keys API from Hour One — 2 operation(s) for keys.
+  humanURL: https://hourone.gitbook.io/api-docs
+  baseURL: https://api.makereals.com/api/v1
+  tags:
+  - keys
+  properties:
+  - type: OpenAPI
+    url: openapi/hour-one-keys-api-openapi.yml
+  - type: APIReference
+    url: https://hourone.gitbook.io/api-docs/reference/api-reference
+  - type: Documentation
+    url: https://hourone.gitbook.io/api-docs
+- aid: hour-one:hour-one-playground-api
+  name: Hour One playground API
+  description: The playground API from Hour One — 4 operation(s) for playground.
+  humanURL: https://hourone.gitbook.io/api-docs
+  baseURL: https://api.makereals.com/api/v1
+  tags:
+  - playground
+  properties:
+  - type: OpenAPI
+    url: openapi/hour-one-playground-api-openapi.yml
+  - type: APIReference
+    url: https://hourone.gitbook.io/api-docs/reference/api-reference
+  - type: Documentation
+    url: https://hourone.gitbook.io/api-docs
+- aid: hour-one:hour-one-videos-api
+  name: Hour One videos API
+  description: The videos API from Hour One — 4 operation(s) for videos.
+  humanURL: https://hourone.gitbook.io/api-docs
+  baseURL: https://api.makereals.com/api/v1
+  tags:
+  - videos
+  properties:
+  - type: OpenAPI
+    url: openapi/hour-one-videos-api-openapi.yml
+  - type: APIReference
+    url: https://hourone.gitbook.io/api-docs/reference/api-reference
+  - type: Documentation
+    url: https://hourone.gitbook.io/api-docs
+- aid: hour-one:hour-one-voice-preview-api
+  name: Hour One voice-preview API
+  description: The voice-preview API from Hour One — 2 operation(s) for voice-preview.
+  humanURL: https://hourone.gitbook.io/api-docs
+  baseURL: https://api.makereals.com/api/v1
+  tags:
+  - voice-preview
+  properties:
+  - type: OpenAPI
+    url: openapi/hour-one-voice-preview-api-openapi.yml
+  - type: APIReference
+    url: https://hourone.gitbook.io/api-docs/reference/api-reference
+  - type: Documentation
+    url: https://hourone.gitbook.io/api-docs
+- aid: hour-one:hour-one-webhook-api
+  name: Hour One webhook API
+  description: The webhook API from Hour One — 5 operation(s) for webhook.
+  humanURL: https://hourone.gitbook.io/api-docs
+  baseURL: https://api.makereals.com/api/v1
+  tags:
+  - webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/hour-one-webhook-api-openapi.yml
+  - type: APIReference
+    url: https://hourone.gitbook.io/api-docs/reference/api-reference
+  - type: Documentation
+    url: https://hourone.gitbook.io/api-docs
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +135,46 @@ maintainers:
 common:
 - type: Website
   url: https://www.hourone.ai/
+- type: DeveloperPortal
+  url: https://hourone.gitbook.io/api-docs
+- type: Documentation
+  url: https://hourone.gitbook.io/api-docs
+- type: APIReference
+  url: https://hourone.gitbook.io/api-docs/reference/api-reference
+- type: GettingStarted
+  url: https://hourone.gitbook.io/api-docs/blueprint-quick-start
+- type: GitHubOrganization
+  url: https://github.com/hourone-ai
+- type: OpenAPI
+  url: openapi/hour-one-openapi.json
+- type: LLMsTxt
+  url: llms/hour-one-llms.txt
+- type: Authentication
+  url: authentication/hour-one-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/hour-one-agentic-access.yml
+- type: Conventions
+  url: conventions/hour-one-conventions.yml
+- type: ErrorCatalog
+  url: errors/hour-one-problem-types.yml
+- type: DataModel
+  url: data-model/hour-one-data-model.yml
+- type: Conformance
+  url: conformance/hour-one-conformance.yml
+- type: Overlay
+  url: overlays/hour-one-openapi-overlay.yaml
+- type: Lifecycle
+  url: lifecycle/hour-one-lifecycle.yml
+- type: MCPServer
+  url: mcp/hour-one-mcp.yml
+- type: AsyncAPI
+  url: asyncapi/hour-one-webhooks-asyncapi.yml
+- type: Webhooks
+  url: asyncapi/hour-one-webhooks-asyncapi.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

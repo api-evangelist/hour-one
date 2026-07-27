@@ -1,0 +1,73 @@
+generated: '2026-07-19'
+method: searched
+source: https://hourone.gitbook.io/api-docs
+derived_from: openapi/hour-one-openapi.json
+summary: >-
+  Cross-cutting request/response conventions for the Hour One (MakeReals) video
+  generation REST API. Derived from the published OpenAPI and enriched from the
+  GitBook developer docs.
+base_url: https://api.makereals.com/api/v1
+authentication:
+  style: api-key-header
+  header: api-key
+  notes: >-
+    Video, voice-preview, subtitles, metadata and analytics endpoints authenticate
+    with the `api-key` request header. Account-management surfaces (key management,
+    webhook management, playground, examples) use an HTTP Bearer token instead.
+    Only one API key is active per account at a time; generating a new key revokes
+    the previous one and keys cannot be retrieved after creation.
+  bearer_scoped_operations:
+  - generate_api_key
+  - revoke_api_key
+  - get_keys_ids
+  - create_webhook
+  - update_webhook
+  - delete_webhook
+  - regenerate_webhook_secret
+  - generate_playground
+idempotency:
+  supported: false
+  notes: >-
+    No Idempotency-Key header or parameter is documented or present in the OpenAPI.
+    A caller-supplied `correlation_id` may be attached at video creation, but it is
+    a grouping/analytics correlation field, not a de-duplication key.
+pagination:
+  supported: false
+  notes: >-
+    GET /videos returns a list without documented page/cursor/limit parameters.
+    Analytics is scoped by from_date/to_date/breakdown rather than paged.
+correlation_tracing:
+  request_field: correlation_id
+  response_fields: [req_id, draft_id]
+  notes: >-
+    `correlation_id` is optional on video creation and can be matched later via the
+    analytics summary `correlation_id` query parameter. Responses expose `req_id`
+    (request id) and `draft_id` for tracing a video through processing.
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /api/v1
+error_envelope:
+  format: fastapi-validation
+  media_type: application/json
+  shape: '{ "detail": [ { "loc": [...], "msg": "string", "type": "string" } ] }'
+  primary_status: 422
+  notes: >-
+    Validation failures return the FastAPI-style detail array (loc/msg/type).
+    This is NOT RFC 9457 application/problem+json. See errors/hour-one-problem-types.yml.
+rate_limiting:
+  documented: false
+  notes: No rate-limit headers or quota policy are documented in the API reference.
+webhooks:
+  supported: true
+  signature_header: x-hourone-signature
+  signature_algorithm: HMAC-SHA256
+  events: [video.ready, video.failed]
+  notes: >-
+    Outbound webhooks are signed with an HMAC-SHA256 hex digest over the raw body
+    using the per-webhook signing secret. See asyncapi/hour-one-webhooks-asyncapi.yml.
+cross_links:
+  errors: errors/hour-one-problem-types.yml
+  authentication: authentication/hour-one-authentication.yml
+  lifecycle: lifecycle/hour-one-lifecycle.yml
+  events: asyncapi/hour-one-webhooks-asyncapi.yml

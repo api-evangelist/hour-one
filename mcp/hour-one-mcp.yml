@@ -1,0 +1,46 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/hour-one-openapi.json
+notes: >-
+  No official hosted/remote Hour One MCP server was found (docs, npm
+  @modelcontextprotocol, MCP registries). This is a CANDIDATE tool list derived
+  one-per-operation from the published OpenAPI so an MCP server could be generated.
+server:
+  name: hour-one
+  transport: http
+  auth: api-key header (api-key); account-management tools require an HTTP Bearer token
+tools:
+- name: list_videos
+  description: List videos produced via the API and their status.
+  source_operation: openapi/hour-one-openapi.json#list_videos_videos_get
+- name: create_video
+  description: Create a video from a blueprint template or a dynamic scene definition.
+  source_operation: openapi/hour-one-openapi.json#create_video_videos_post
+- name: get_video_by_id
+  description: Get a single video's status, progress and output URLs.
+  source_operation: openapi/hour-one-openapi.json#get_video_by_id_videos__video_id__get
+- name: delete_video_by_id
+  description: Delete a video by id.
+  source_operation: openapi/hour-one-openapi.json#delete_video_by_id_videos__video_id__delete
+- name: create_subtitles
+  description: Generate subtitles for a video in a target language and format.
+  source_operation: openapi/hour-one-openapi.json#create_subtitles_videos__video_id__subtitles_post
+- name: get_video_metadata
+  description: Get a video's duration and per-scene timing metadata.
+  source_operation: openapi/hour-one-openapi.json#get_video_metadata_videos__video_id__metadata_get
+- name: create_audio_preview
+  description: Create a voice/audio preview task for given text and voice.
+  source_operation: openapi/hour-one-openapi.json#create_audio_preview_voice_preview_post
+- name: get_voice_preview
+  description: Poll a voice preview task by id for its result.
+  source_operation: openapi/hour-one-openapi.json#get_voice_preview_voice_preview__task_id__get
+- name: get_analytics_summary
+  description: Summarize video creation volume and duration over a timeframe.
+  source_operation: openapi/hour-one-openapi.json#get_summary_analytics_summary_get
+- name: create_webhook
+  description: Register a webhook endpoint for video.ready / video.failed events.
+  source_operation: openapi/hour-one-openapi.json#create_webhook_webhooks_post
+- name: list_webhooks
+  description: List configured webhook endpoints.
+  source_operation: openapi/hour-one-openapi.json#get_webhooks_webhooks_get

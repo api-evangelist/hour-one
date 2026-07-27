@@ -1,0 +1,11 @@
+generated: '2026-07-19'
+method: generated
+skills:
+- file: hour-one-create-video-from-blueprint.md
+  name: Create a video from a blueprint and await completion
+  api: openapi/hour-one-openapi.json
+  operations: [create_video_videos_post, get_video_by_id_videos__video_id__get, get_video_metadata_videos__video_id__metadata_get, create_webhook_webhooks_post]
+- file: hour-one-preview-voice-and-generate.md
+  name: Preview a voice then generate a dynamic video with subtitles
+  api: openapi/hour-one-openapi.json
+  operations: [create_audio_preview_voice_preview_post, get_voice_preview_voice_preview__task_id__get, create_video_videos_post, create_subtitles_videos__video_id__subtitles_post]

@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: searched
+source: https://hourone.gitbook.io/api-docs
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /api/v1
+  docs: https://hourone.gitbook.io/api-docs/reference/api-reference.md
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No formal deprecation policy or RFC 8594 Sunset/Deprecation header support is documented.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+deprecated_operations: []
+provider_status:
+  note: >-
+    Hour One was acquired by Wix (2025). As of this enrichment the marketing site
+    hourone.ai resolves to a parked host and the API host api.makereals.com no
+    longer resolves; the developer documentation and OpenAPI remain published on
+    GitBook. Treat the runtime API as likely decommissioned/absorbed into Wix.

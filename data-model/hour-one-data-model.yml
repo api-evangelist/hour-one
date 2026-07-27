@@ -1,0 +1,81 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hour-one-openapi.json
+summary: >-
+  Entity-relationship graph derived from the Hour One (MakeReals) OpenAPI schemas
+  and id-reference fields. The central resource is a Video, assembled from Scenes
+  and rendered against reusable Template / Palette / Character / Voice assets, with
+  Webhooks delivering completion events.
+entities:
+- name: Video
+  schema: VideoResponse
+  id_field: id
+  key_fields: [id, name, status, progress, req_id, draft_id, source_draft_id, recipe_id, template_id, palette_id, character_id, voice_id, correlation_id, video_player_url, download_url]
+  status_enum: [started, processing, ready, published, failed, not_started, stopped, cancelled]
+- name: Scene
+  schema: VideoScene
+  parent: Video
+  key_fields: [name, type, layout_id, media_elements, texts_elements, transcript, voice_recording_url]
+- name: VoicePreview
+  schema: CreateVoicePreviewResponse
+  id_field: task_id
+  status_enum: [in_progress, ready, failed]
+- name: Subtitles
+  schema: SubtitlesApiResponse
+  parent: Video
+  key_fields: [language_code, format]
+- name: Webhook
+  schema: WebhookResponse
+  id_field: id
+  key_fields: [id, name, description, status, events, url, signing_secret]
+- name: ApiKey
+  schema: ApiKeyResponse
+  id_field: key_id
+- name: Example
+  schema: ExampleResponse
+  key_fields: [type]
+- name: PlaygroundVideo
+  schema: PlaygroundResponse
+  id_field: video_id
+- name: AnalyticsSummary
+  schema: UsageResponse
+  key_fields: [breakdown, from_date, to_date, correlation_id]
+relationships:
+- from: Video
+  to: Scene
+  type: has_many
+  via: scenes
+- from: Video
+  to: Template
+  type: belongs_to
+  via: template_id
+- from: Video
+  to: Palette
+  type: belongs_to
+  via: palette_id
+- from: Video
+  to: Character
+  type: belongs_to
+  via: character_id
+- from: Video
+  to: Voice
+  type: belongs_to
+  via: voice_id
+- from: Video
+  to: Video
+  type: belongs_to
+  via: source_draft_id
+  note: a video created from a blueprint draft references its source draft
+- from: Subtitles
+  to: Video
+  type: belongs_to
+  via: video_id
+- from: AnalyticsSummary
+  to: Video
+  type: has_many
+  via: correlation_id
+  note: analytics groups videos by the caller-supplied correlation_id
+notes: >-
+  Template, Palette, Character and Voice are referenced by id on Video but are not
+  themselves exposed as standalone CRUD resources in the public API (they are
+  managed in the Studio UI); they are modeled here as referenced assets.

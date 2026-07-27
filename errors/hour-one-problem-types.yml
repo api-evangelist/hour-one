@@ -1,0 +1,48 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/hour-one-openapi.json
+format: fastapi-validation
+envelope:
+  media_type: application/json
+  shape: '{ "detail": [ { "loc": [string|int, ...], "msg": "string", "type": "string" } ] }'
+  notes: >-
+    Hour One / MakeReals is a FastAPI service; documented error bodies use the
+    framework validation envelope (a `detail` array of loc/msg/type objects),
+    not RFC 9457 application/problem+json.
+problems:
+- status: 422
+  title: Validation Error
+  schema: HTTPValidationError
+  media_type: application/json
+  applies_to_operations:
+  - create_video_videos_post
+  - get_video_by_id_videos__video_id__get
+  - delete_video_by_id_videos__video_id__delete
+  - create_subtitles_videos__video_id__subtitles_post
+  - get_video_metadata_videos__video_id__metadata_get
+  - create_audio_preview_voice_preview_post
+  - get_voice_preview_voice_preview__task_id__get
+  - create_example_examples_post
+  - create_video_call_example_examples_create_video_get
+  - get_summary_analytics_summary_get
+  - get_keys_ids_keys_get
+  - generate_api_key_keys_post
+  - revoke_api_key_keys__key_id__delete
+  - generate_playground_generate_post
+  - get_videos_playground_videos_get
+  - download_video_playground_videos__video_id__download_get
+  - share_video_playground_videos__video_id__share_put
+  - create_webhook_webhooks_post
+  - get_webhook_webhooks__webhook_id__get
+  - update_webhook_webhooks__webhook_id__put
+  - delete_webhook_webhooks__webhook_id__delete
+  - regenerate_webhook_secret_webhooks__webhook_id__secret_put
+  - toggle_pause_state_webhooks__webhook_id__pause_put
+  - toggle_active_state_webhooks__webhook_id__toggle_status_put
+video_status_terminal_states:
+  source: openapi/hour-one-openapi.json#/components/schemas/VideoStatusEnum
+  states: [started, processing, ready, published, failed, not_started, stopped, cancelled]
+  failure_states: [failed, stopped, cancelled]
+  notes: >-
+    A `failed` video status (and the `video.failed` webhook event) is the
+    business-level failure signal, distinct from the transport-level 422.

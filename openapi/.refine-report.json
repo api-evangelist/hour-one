@@ -1,0 +1,24 @@
+{
+  "provider": "hour-one",
+  "sources": [
+    "hour-one-general-api-openapi.yml",
+    "hour-one-keys-api-openapi.yml",
+    "hour-one-playground-api-openapi.yml",
+    "hour-one-videos-api-openapi.yml",
+    "hour-one-voice-preview-api-openapi.yml",
+    "hour-one-webhook-api-openapi.yml"
+  ],
+  "outputs": [
+    "hour-one-general-api-openapi.yml",
+    "hour-one-keys-api-openapi.yml",
+    "hour-one-playground-api-openapi.yml",
+    "hour-one-videos-api-openapi.yml",
+    "hour-one-voice-preview-api-openapi.yml",
+    "hour-one-webhook-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
